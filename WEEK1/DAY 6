@@ -1,0 +1,142 @@
+USE KayaHotelDB
+
+--practise ques
+
+  select * from[dbo].[customers] 
+   select * from [dbo].[delivery]
+    select * from [dbo].[hotel_details]
+     select * from [dbo].[orders]
+
+select SUM(order_amount) as total
+from orders
+where order_date>'2025-05-05'
+
+select * 
+from orders
+where order_amount>(select AVG(order_amount) from orders);
+ 
+select AVG(order_amount) as avg
+from orders
+
+select c.customer_id, customer_name,order_amount
+from orders o
+join customers c on o.customer_id=c.customer_id
+where order_amount>600
+
+SELECT customer_id
+FROM orders
+WHERE order_amount > 600;
+
+select customer_name,SUM(order_amount) as total
+from orders o
+join customers c on o.customer_id=c.customer_id
+group by customer_name
+
+select hotel_name,count(order_id) as total
+from orders o
+join hotel_details h on o.hotel_id=h.hotel_id
+group by hotel_name
+
+select hotel_name,AVG(order_amount) as avg_amount
+from orders o
+join hotel_details h  on o.hotel_id=h.hotel_id
+group by hotel_name
+
+select customer_name,count(order_id)
+from orders o
+join customers c on o.customer_id=c.customer_id
+group by customer_name
+having count(order_id)>1
+
+select hotel_name,sum(order_amount)
+from orders o
+join hotel_details h on o.hotel_id=h.hotel_id
+group by hotel_name
+having sum(order_amount)>500
+
+select top 3 
+c.customer_name,
+o.order_id,sum(order_amount) as total
+from orders o
+join customers c on o.customer_id=c.customer_id
+group by c.customer_name,order_id
+having sum(order_amount)>500
+
+select hotel_name,
+sum(order_amount) as total_revenue,
+count(order_id) as total_orders,
+avg(order_amount) as avg_amount 
+from orders o
+join hotel_details h on o.hotel_id=h.hotel_id
+group by hotel_name
+having sum(order_amount)>500 and
+       count(order_id)>=1 and
+       avg(order_amount)>500
+
+select partner_name,
+      count(o.order_id) as total_delivers,
+      sum(order_amount) as total_revenue,
+      max(order_amount)
+from orders o
+join delivery d on o.partner_id=d.partner_id
+group by partner_name
+having count(o.order_id)>=1
+   and sum(order_amount)> 400
+   and max(order_amount)>100
+
+     select * from[dbo].[customers] 
+   select * from [dbo].[delivery]
+    select * from [dbo].[hotel_details]
+     select * from [dbo].[orders]
+
+
+select top 2 hotel_name,
+     sum(order_amount) as revenue,
+     count(o.order_id) as avg_orders
+from orders o
+join hotel_details h on o.hotel_id=h.hotel_id
+group by hotel_name
+order by 
+       avg_orders desc,revenue desc 
+         
+--- THIS MUCH LINE CODE CAN BE WRITTEN IN ANOTHER CODE ALSO as it shown down
+   Q.Find top-performing hotels where:
+revenue > average hotel revenue
+AND orders > average hotel orders
+  
+SELECT hotel_id,
+       SUM(order_amount) AS revenue,
+       COUNT(order_id) AS total_orders
+FROM orders
+GROUP BY hotel_id
+HAVING SUM(order_amount) >
+(
+    SELECT AVG(revenue)
+    FROM
+    (
+        SELECT SUM(order_amount) AS revenue
+        FROM orders
+        GROUP BY hotel_id
+    ) x
+)
+AND COUNT(order_id) >
+(
+    SELECT AVG(total_orders)
+    FROM
+    (
+        SELECT COUNT(order_id) AS total_orders
+        FROM orders
+        GROUP BY hotel_id
+    ) y
+);
+
+
+--this
+ select top 2 hotel_name,
+     sum(order_amount) as revenue,
+     count(o.order_id) as avg_orders
+from orders o
+join hotel_details h on o.hotel_id=h.hotel_id
+group by hotel_name
+order by 
+       avg_orders desc,revenue desc  
