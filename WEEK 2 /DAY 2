@@ -1,0 +1,521 @@
+create database CarRentalsDB
+
+use CarRentalsDB
+
+create table owners(
+  own_id varchar(20)  PRIMARY KEY,
+  own_name varchar(30),
+  address varchar(40),
+  phone_no bigint,
+  email_id varchar(40)
+  );
+
+create table cars(
+ car_id varchar(10)  PRIMARY KEY,
+ car_name varchar(20),
+ car_type varchar(20),
+ own_id varchar(20),
+ foreign key(own_id)references owners (own_id)
+ );
+
+create table rentals(
+ rental_id varchar(20)  PRIMARY KEY,
+ customer_id varchar(10),
+ car_id varchar(10),
+ pickup_date date,
+ return_date date,
+ km_driven int,
+ fare_amount double precision,
+ foreign key(customer_id)references customers (customer_id),
+ foreign key(car_id)references cars (car_id)
+ );
+
+CREATE TABLE customers (
+    customer_id VARCHAR(10) PRIMARY KEY,
+    customer_name VARCHAR(20),
+    address VARCHAR(20),
+    phone_no BIGINT,
+    email_id VARCHAR(20)
+);
+
+-- OWNERS
+INSERT INTO owners VALUES
+('o101', 'Ramesh', 'Hyderabad', 9876543210, 'ramesh@gmail.com'),
+('o102', 'Suresh', 'Chennai', 9876543211, 'suresh@gmail.com'),
+('o103', 'Mahesh', 'Bangalore', 9876543212, 'mahesh@gmail.com'),
+('o104', 'Priya', 'Mumbai', 9876543213, 'priya@gmail.com'),
+('o105', 'Kavya', 'Delhi', 9876543214, 'kavya@gmail.com'),
+('o106', 'Deepak', 'Pune', 9876543215, 'deepak@gmail.com'),
+('o107', 'Meena', 'Kolkata', 9876543216, 'meena@gmail.com'),
+('o108', 'Vikram', 'Jaipur', 9876543217, 'vikram@gmail.com'),
+('o109', 'Lakshmi', 'Coimbatore', 9876543218, 'lakshmi@gmail.com'),
+('o110', 'Naveen', 'Mysore', 9876543219, 'naveen@gmail.com'),
+('o111', 'Harish', 'Nagpur', 9876543220, 'harish@gmail.com'),
+('o112', 'Swathi', 'Madurai', 9876543221, 'swathi@gmail.com'),
+('o113', 'Ganesh', 'Surat', 9876543222, 'ganesh@gmail.com'),
+('o114', 'Akhila', 'Trichy', 9876543223, 'akhila@gmail.com'),
+('o115', 'Ravi', 'Hubli', 9876543224, 'ravi@gmail.com');
+
+-- CUSTOMERS
+INSERT INTO customers VALUES
+('C101', 'Rahul', 'Hyderabad', 9123456780, 'rahul@gmail.com'),
+('C102', 'Anjali', 'Chennai', 9123456781, 'anjali@gmail.com'),
+('C103', 'Kiran', 'Vijayawada', 9123456782, 'kiran@gmail.com'),
+('C104', 'Sneha', 'Guntur', 9123456783, 'sneha@gmail.com'),
+('C105', 'Arjun', 'Visakhapatnam', 9123456784, 'arjun@gmail.com'),
+('C106', 'Teja', 'Warangal', 9123456785, 'teja@gmail.com'),
+('C107', 'Divya', 'Nellore', 9123456786, 'divya@gmail.com'),
+('C108', 'Rohit', 'Tirupati', 9123456787, 'rohit@gmail.com'),
+('C109', 'Pooja', 'Kurnool', 9123456788, 'pooja@gmail.com'),
+('C110', 'Manoj', 'Kadapa', 9123456789, 'manoj@gmail.com'),
+('C111', 'Sanjay', 'Rajahmundry', 9123456790, 'sanjay@gmail.com'),
+('C112', 'Keerthi', 'Eluru', 9123456791, 'keerthi@gmail.com'),
+('C113', 'Varun', 'Ongole', 9123456792, 'varun@gmail.com'),
+('C114', 'Bhavana', 'Karimnagar', 9123456793, 'bhavana@gmail.com'),
+('C115', 'Nithin', 'Nizamabad', 9123456794, 'nithin@gmail.com');
+
+-- CARS
+INSERT INTO cars VALUES
+('CAR101', 'Swift', 'Hatchback', 'o101'),
+('CAR102', 'Innova', 'SUV', 'o102'),
+('CAR103', 'i20', 'Hatchback', 'o103'),
+('CAR104', 'Creta', 'SUV', 'o104'),
+('CAR105', 'City', 'Sedan', 'o105'),
+('CAR106', 'Baleno', 'Hatchback', 'o106'),
+('CAR107', 'Fortuner', 'SUV', 'o107'),
+('CAR108', 'Verna', 'Sedan', 'o108'),
+('CAR109', 'Punch', 'Mini SUV', 'o109'),
+('CAR110', 'XUV700', 'SUV', 'o110'),
+('CAR111', 'Alto', 'Hatchback', 'o111'),
+('CAR112', 'Scorpio', 'SUV', 'o112'),
+('CAR113', 'Amaze', 'Sedan', 'o113'),
+('CAR114', 'Venue', 'SUV', 'o114'),
+('CAR115', 'Tiago', 'Hatchback', 'o115');
+
+
+INSERT INTO rentals VALUES
+('R101', 'C101', 'CAR101', '2025-05-01', '2025-05-03', 250, 5000),
+('R102', 'C102', 'CAR102', '2025-05-02', '2025-05-05', 400, 8000),
+('R103', 'C103', 'CAR103', '2025-05-04', '2025-05-06', 220, 4500),
+('R104', 'C104', 'CAR104', '2025-05-06', '2025-05-08', 300, 6500),
+('R105', 'C105', 'CAR105', '2025-05-07', '2025-05-09', 280, 6000),
+('R106', 'C106', 'CAR107', '2025-05-10', '2025-05-12', 500, 10000),
+('R107', 'C107', 'CAR108', '2025-05-11', '2025-05-14', 320, 7000),
+('R108', 'C108', 'CAR110', '2025-05-13', '2025-05-15', 550, 11000),
+('R109', 'C109', 'CAR111', '2025-05-14', '2025-05-16', 180, 3600),
+('R110', 'C110', 'CAR113', '2025-05-15', '2025-05-18', 300, 6200);
+
+
+select *from [dbo].[cars]
+
+select *from [dbo].[customers]
+
+select *from [dbo].[owners]
+
+select *from [dbo].[rentals]
+
+--Car & owner details based on car type
+select *
+from cars c
+inner join owners o on o.own_id=c.own_id
+where car_type in('Hatchback','SUV')
+order by car_name ;
+
+select *
+from cars c
+where car_name='Creta' and
+car_type = 'suv'
+order by car_id
+
+
+
+select c.car_id, car_name, car_type
+from cars c  
+left join rentals r on c.car_id=r.car_id
+where r.car_id is null;
+
+select *
+from cars c
+JOIN owners o on c.own_id=o.own_id
+where car_name='Alto'
+
+SELECT car_id, car_name, car_type
+FROM cars
+EXCEPT
+SELECT c.car_id, c.car_name, c.car_type
+FROM cars c
+JOIN rentals r
+ON c.car_id = r.car_id;
+
+select car_type,count(car_type) as total_booked
+from cars c
+join rentals r on c.car_id = r.car_id
+group by car_type
+
+
+select *from [dbo].[cars]
+
+select *from [dbo].[customers]
+
+select *from [dbo].[owners]
+
+select *from [dbo].[rentals]
+
+select * 
+from rentals
+where day(pickup_date)=10 and month(pickup_date)=5
+and year(pickup_date)=2025
+order by rental_id
+
+--my own  examples
+select *
+from cars
+where car_type='SUV'
+
+select *
+from rentals
+where fare_amount>6000
+
+-- 1. Display all available cars
+SELECT * FROM cars;
+
+-- 2. Show only SUV cars
+SELECT * 
+FROM cars
+WHERE car_type = 'SUV';
+
+-- 3. Show customers from Hyderabad
+SELECT *
+FROM customers
+WHERE address = 'Hyderabad';
+
+-- 4. Find rentals with fare greater than 6000
+SELECT *
+FROM rentals
+WHERE fare_amount > 6000;
+
+-- 5. Display car names and their owners
+SELECT c.car_name, o.own_name
+FROM cars c
+JOIN owners o
+ON c.own_id = o.own_id;
+
+-- 6. Show customer name and rented car
+SELECT cu.customer_name, ca.car_name
+FROM rentals r
+JOIN customers cu
+ON r.customer_id = cu.customer_id
+JOIN cars ca
+ON r.car_id = ca.car_id;
+
+-- 7. Find cars not rented
+SELECT car_id, car_name
+FROM cars
+WHERE car_id NOT IN (
+    SELECT car_id FROM rentals
+);
+
+-- 8. Count total cars
+SELECT COUNT(*) AS total_cars
+FROM cars;
+
+-- 9. Count total rentals
+SELECT COUNT(*) AS total_rentals
+FROM rentals;
+
+-- 10. Find maximum fare amount
+SELECT MAX(fare_amount) AS highest_fare
+FROM rentals;
+
+-- 11. Find minimum fare amount
+SELECT MIN(fare_amount) AS lowest_fare
+FROM rentals;
+
+-- 12. Find average fare amount
+SELECT AVG(fare_amount) AS average_fare
+FROM rentals;
+
+-- 13. Show rentals sorted by fare amount descending
+SELECT *
+FROM rentals
+ORDER BY fare_amount DESC;
+
+-- 14. Find total km driven
+SELECT SUM(km_driven) AS total_km
+FROM rentals;
+
+-- 15. Display customers whose name starts with 'R'
+SELECT *
+FROM customers
+WHERE customer_name LIKE 'R%';
+
+-- 16. Display cars whose name ends with 'a'
+SELECT *
+FROM cars
+WHERE car_name LIKE '%a';
+
+-- 17. Find all hatchback cars
+SELECT *
+FROM cars
+WHERE car_type = 'Hatchback';
+
+-- 18. Show rental details with customer and car names
+SELECT r.rental_id,
+       cu.customer_name,
+       ca.car_name,
+       r.pickup_date,
+       r.return_date
+FROM rentals r
+JOIN customers cu
+ON r.customer_id = cu.customer_id
+JOIN cars ca
+ON r.car_id = ca.car_id;
+
+-- 19. Find owner of CAR110
+SELECT o.own_name
+FROM owners o
+JOIN cars c
+ON o.own_id = c.own_id
+WHERE c.car_id = 'CAR110';
+
+-- 20. Find customers who rented SUV cars
+SELECT cu.customer_name, ca.car_name
+FROM rentals r
+JOIN customers cu
+ON r.customer_id = cu.customer_id
+JOIN cars ca
+ON r.car_id = ca.car_id
+WHERE ca.car_type = 'SUV';
+
+-- 21. Find cars rented after 2025-05-10
+SELECT *
+FROM rentals
+WHERE pickup_date > '2025-05-10';
+
+-- 22. Display cars with fare greater than average fare
+SELECT *
+FROM rentals
+WHERE fare_amount > (
+    SELECT AVG(fare_amount)
+    FROM rentals
+);
+
+-- 23. Find total rentals for each car
+SELECT car_id, COUNT(*) AS total_rentals
+FROM rentals
+GROUP BY car_id;
+
+-- 24. Find total fare collected for each car
+SELECT car_id, SUM(fare_amount) AS total_income
+FROM rentals
+GROUP BY car_id;
+
+-- 25. Find number of cars by type
+SELECT car_type, COUNT(*) AS total
+FROM cars
+GROUP BY car_type;
+
+-- 26. Find customers who never rented cars
+SELECT customer_id, customer_name
+FROM customers
+WHERE customer_id NOT IN (
+    SELECT customer_id
+    FROM rentals
+);
+
+-- 27. Find cars rented between two dates
+SELECT *
+FROM rentals
+WHERE pickup_date BETWEEN '2025-05-01' AND '2025-05-10';
+
+-- 28. Display the highest km driven rental
+SELECT *
+FROM rentals
+WHERE km_driven = (
+    SELECT MAX(km_driven)
+    FROM rentals
+);
+
+-- 29. Find owner and car details
+SELECT o.own_name,
+       c.car_name,
+       c.car_type
+FROM owners o
+JOIN cars c
+ON o.own_id = c.own_id;
+
+-- 30. Find customers whose fare amount is above 7000
+SELECT cu.customer_name, r.fare_amount
+FROM rentals r
+JOIN customers cu
+ON r.customer_id = cu.customer_id
+WHERE r.fare_amount > 7000;
+
+-- 31. Find second highest fare
+SELECT MAX(fare_amount) AS second_highest
+FROM rentals
+WHERE fare_amount < (
+    SELECT MAX(fare_amount)
+    FROM rentals
+);
+
+-- 32. Display vacant cars using LEFT JOIN
+SELECT c.car_id, c.car_name
+FROM cars c
+LEFT JOIN rentals r
+ON c.car_id = r.car_id
+WHERE r.car_id IS NULL;
+
+-- 33. Find how many rentals each customer made
+SELECT customer_id, COUNT(*) AS rentals_count
+FROM rentals
+GROUP BY customer_id;
+
+-- 34. Find cars rented more than once
+SELECT car_id, COUNT(*) AS total
+FROM rentals
+GROUP BY car_id
+HAVING COUNT(*) > 1;
+
+-- 35. Display all sedan cars not rented
+SELECT *
+FROM cars
+WHERE car_type = 'Sedan'
+AND car_id NOT IN (
+    SELECT car_id
+    FROM rentals
+);
+
+select car_name,own_name
+from cars c
+join owners o on c.own_id=o.own_id
+
+select customer_name,car_name
+from customers c
+join rentals r on c.customer_id= r.customer_id
+join cars ca on r.car_id=ca.car_id
+
+select max(fare_amount) as highest
+from rentals
+
+select avg(fare_amount) as average
+from rentals
+
+select *
+from rentals
+order by fare_amount desc
+
+select sum(km_driven) as total
+from rentals
+
+select *
+from customers
+where customer_name like 'R%'
+
+select *
+from customers
+where customer_name like '%a'
+
+select *
+from cars
+where car_type ='Hatchback'
+
+
+select *from [dbo].[cars]
+
+select *from [dbo].[customers]
+
+select *from [dbo].[owners]
+
+select *from [dbo].[rentals]
+
+select customer_name,car_name ,*
+from rentals r
+inner join customers c on r.customer_id=c.customer_id 
+inner join cars ca on r.car_id=ca.car_id
+
+select own_name
+from owners o
+join cars c on o.own_id=c.own_id 
+where car_name='swift'
+
+select *
+from rentals
+where pickup_date>'2025-05-10';
+
+SELECT *
+FROM customers
+ORDER BY customer_name;
+
+
+SELECT customer_id, COUNT(*) AS rentals_count
+FROM rentals
+GROUP BY customer_id;
+
+SELECT MAX(fare_amount) AS second_highest
+FROM rentals
+WHERE fare_amount < (
+    SELECT MAX(fare_amount)
+    FROM rentals
+);
+
+select *
+from customers c
+left join rentals r on c.customer_id=r.customer_id
+where r.customer_id is null
+
+SELECT *
+FROM rentals
+WHERE pickup_date BETWEEN '2025-05-01' AND '2025-05-10';
+
+select own_name 
+from owners o
+join cars c on o.own_id=c.own_id; 
+
+SELECT o.own_name,
+       c.car_id,
+       c.car_name,
+       c.car_type
+FROM owners o
+JOIN cars c
+
+SELECT rental_id,
+       customer_id,
+       car_id,
+       pickup_date,
+       return_date
+FROM rentals
+WHERE pickup_date >= '2025-05-01'
+AND pickup_date <= '2025-05-10';
+
+SELECT o.own_name,
+       c.car_id,
+       c.car_name,
+       c.car_type
+FROM owners o
+JOIN cars c
+ON o.own_id = c.own_id;
+
+SELECT customer_id,
+       customer_name,
+       address
+FROM customers
+ORDER BY customer_name ASC;
+
+SELECT car_id,
+       AVG(fare_amount) AS average_fare
+FROM rentals
+GROUP BY car_id;
+
+-- Using INNER JOIN
+
+SELECT rentals.rental_id,
+       customers.customer_name,
+       cars.car_name,
+       rentals.pickup_date,
+       rentals.return_date
+FROM rentals
+INNER JOIN customers
+ON rentals.customer_id = customers.customer_id
+INNER JOIN cars
+ON rentals.car_id = cars.car_id;
