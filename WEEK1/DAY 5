@@ -1,0 +1,104 @@
+--view
+
+  
+create view test
+as
+select customer_name,
+address,
+order_id,
+hotel_item,rating
+from orders o
+join customers c on o.customer_id=c.customer_id
+join hotel_details h on o.hotel_id=h.hotel_id
+
+select *
+from test
+
+alter view test
+as
+select customer_name,
+address,
+order_id,
+hotel_item,partner_name,h.rating
+from orders o
+join customers c on o.customer_id=c.customer_id
+join hotel_details h on o.hotel_id=h.hotel_id
+join delivery d on o.partner_id=d.partner_id
+
+create view short
+as
+select c.customer_id,customer_name,
+phone_no,
+order_id,
+hotel_item,rating
+from orders o
+join customers c on o.customer_id=c.customer_id
+join hotel_details h on o.hotel_id=h.hotel_id
+
+drop view short
+
+--schema
+
+  
+it is also a container 
+schema objectname (table,view,....)
+
+select *
+from CarRentalsDB.cars
+
+create schema testschema
+
+create table testschema.abc(ID INT,S_NAME VARCHAR(10))
+
+select *
+from testschema.abc
+
+drop table testschema.abc
+
+drop schema testschema
+
+
+  select * from[dbo].[customers] 
+   select * from [dbo].[delivery]
+    select * from [dbo].[hotel_details]
+     select * from [dbo].[orders]
+ 
+
+--case statement
+
+select customer_name,phone_no,address,
+CASE address
+when 'chennai' then 'madras'
+when 'mumbai' then 'bombay'
+else 'same'
+end as previous_names
+from customers
+
+select age
+from customers
+order by age desc
+
+--21-23 career age
+--24-27 trip going age
+--28-30 marriage age
+
+select customer_name,age,
+CASE 
+when age between '21'and'23' then 'career age'
+when age between '24'and'27' then 'trip going age'
+when age between '28'and'30' then 'marriage age'
+else 'study'
+end as doings
+from customers
+
+select customer_name,address,
+case address
+when 'chennai' then 'madras'
+when 'mumbai' then 'bombay'
+when 'bangalore' then 'magalore'
+when 'hyderabad' then 'pathabasti'
+when 'delhi' then 'NewDelhi'
+when 'vijaywada' then 'bejawada'
+else 'same'
+end as last_names
+from customers
