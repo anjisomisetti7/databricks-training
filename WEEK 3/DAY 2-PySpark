@@ -1,0 +1,54 @@
+--introdustion of databricks has done
+--there are some basic commands 
+
+df=spark.read.table("samples.bakehouse.sales_franchises")
+gives the dataFrame
+
+display(df)
+shows the table clearly
+
+df.write.saveAsTable("srh.srh_schema.srh_table")
+created a catlog and named srh 
+created a schema and table also
+
+df2=df.limit(10)
+df2.count()
+df2.printSchema
+
+-- known the basics of pyspark
+
+
+What is PySpark?
+
+PySpark is the Python API for Apache Spark.
+
+It is used to process large-scale data across multiple computers very fast.
+
+In simple words:
+
+Python + Spark = PySpark
+You write code in Python
+Spark handles big data processing in distributed systems
+Why is PySpark used in Databricks?
+
+Databricks is built on top of Apache Spark.
+
+So PySpark is one of the main languages used inside Databricks for:
+
+Data cleaning
+Data transformation
+ETL pipelines
+Big data analytics
+Machine learning preprocessing
+Streaming data processing
+Real-world Example
+
+Suppose a company has:
+
+500 million customer records
+Sales data from many countries
+Huge log files
+
+Normal Python with pandas may become slow or crash because data is too large.
+
+PySpark processes the data in parallel across clusters.
