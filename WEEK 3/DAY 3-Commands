@@ -1,0 +1,128 @@
+--inserted the values files to the databricks platform
+  id|name|age|gender|email
+111|Rohit Verma|24|Male|rohit.verma@gmail.com
+112|Kavya Sharma|25|Female|kavya.sharma@gmail.com
+113|Nikhil Reddy|27|Male|nikhil.reddy@gmail.com
+114|Sanjana Patel|26|Female|sanjana.patel@gmail.com
+115|Akhil Kumar|23|Male|akhil.kumar@gmail.com
+116|Meghana Rao|29|Female|meghana.rao@gmail.com
+117|Varun Singh|28|Male|varun.singh@gmail.com
+118|Deepika Nair|24|Female|deepika.nair@gmail.com
+119|Harsha Goud|22|Male|harsha.goud@gmail.com
+120|Lavanya Reddy|30|Female|lavanya.reddy@gmail.com
+121|Sai Krishna|26|Male|sai.krishna@gmail.com
+122|Neha Joshi|25|Female|neha.joshi@gmail.com
+123|Tarun Mehta|31|Male|tarun.mehta@gmail.com
+124|Bhavana Das|27|Female|bhavana.das@gmail.com
+125|Ajay Choudhary|28|Male|ajay.choudhary@gmail.com
+126|Ritika Kapoor|24|Female|ritika.kapoor@gmail.com
+127|Suresh Yadav|32|Male|suresh.yadav@gmail.com
+128|Pavani Reddy|23|Female|pavani.reddy@gmail.com
+129|Vamsi Teja|29|Male|vamsi.teja@gmail.com
+130|Keerthi Menon|26|Female|keerthi.menon@gmail.com
+
+
+
+df=spark.read.\
+option("header","true")\
+.option("inferSchema","true")\
+.csv("/Volumes/my_files/my_filesschema/csv_files/my_files/Pipe CSV.txt", sep="|")
+
+  learned each and every line
+  
+1. spark.read
+
+Used to read files into Spark.
+
+spark.read
+
+It creates a DataFrame reader object.
+
+2. \ (Backslash)
+
+Backslash means:
+
+“Continue code in next line”
+
+Without \, Python thinks statement ended.
+
+Example:
+
+a = 10 + \
+20
+3. .option("header","true")
+
+Tells Spark:
+
+First row contains column names
+
+Example file:
+
+id|name|age
+101|Ravi|25
+
+Spark will use:
+
+id
+name
+age
+
+as column names.
+
+If false:
+
+.option("header","false")
+
+Spark creates default columns:
+
+_c0, _c1, _c2
+4. .option("inferSchema","true")
+
+Automatically detects datatype.
+
+Example:
+
+Value	Detected Type
+101	Integer
+25.5	Double
+Ravi	String
+
+Without inferSchema:
+
+Everything becomes string.
+
+Example
+
+Without inferSchema:
+
+"101"
+"25"
+
+With inferSchema:
+
+101
+25
+
+(integer type)
+
+5. .csv()
+
+Reads CSV/text file.
+
+.csv("path")
+6. File Path
+"/Volumes/my_files/my_filesschema/csv_files/my_files/Pipe CSV.txt"
+
+Location of file in Databricks Volume.
+
+7. sep="|"
+
+Separator/delimiter used in file.
+
+Your file looks like:
+
+111|Rohit|24|Male
+
+Here separator is |.
+
+So Spark splits columns using pipe symbol.
