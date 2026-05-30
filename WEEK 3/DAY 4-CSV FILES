@@ -1,0 +1,125 @@
+to read the csv file
+df = spark.read.csv("/path/file.csv")
+
+  read the header
+df = spark.read \
+.option("header","true") \
+.csv("/path/file.csv")
+  
+wthout header
+ df = spark.read \
+.option("header","false") \
+.csv("/path/file.csv") 
+
+  
+inferschema 
+df = spark.read \
+.option("inferSchema","true") \
+.csv("/path/file.csv")
+
+pipe CSV
+df = spark.read \
+.option("header","true") \
+.csv("/path/file.csv", sep="|")  
+
+
+df = spark.read \
+.option("multiline","true") \
+.csv("/path/file.csv")
+
+
+df = spark.read \
+.option("quote","'") \
+.csv("/path/file.csv")
+
+schema manually
+from pyspark.sql.types import *
+
+schema = StructType([
+    StructField("id", IntegerType(), True),
+    StructField("name", StringType(), True),
+    StructField("age", IntegerType(), True)
+])
+
+df = spark.read \
+.schema(schema) \
+.csv("/path/file.csv")
+
+  for selecting columns
+df.select("name","age").show()  
+ 
+  Remove Duplicates
+df.dropDuplicates()
+
+  Write CSV File
+df.write.csv("/output/path")
+
+  Write CSV With Header
+df.write \
+.option("header","true") \
+.csv("/output/path")
+
+  Write Pipe CSV
+df.write \
+.option("header","true") \
+.option("sep","|") \
+.csv("/output/path")
+
+  Overwrite Existing File
+df.write \
+.mode("overwrite") \
+.csv("/output/path")
+
+  Append Data
+df.write \
+.mode("append") \
+.csv("/output/path")
+
+  Read Corrupt Records
+df = spark.read \
+.option("mode","PERMISSIVE") \
+.csv("/path/file.csv")
+
+For removing double quotes and give the values without
+  double quotes
+
+df2=spark.read.csv("/Volumes/my_files/my_filesschema/csv_files/my_files/Pipe double Quote.txt"
+                   ,header= True,
+                   sep="|",
+                   inferSchema=True)
+display(df2)
+
+now single quotes values for removing them
+
+  df2=spark.read.csv("/Volumes/my_files/my_filesschema/csv_files/my_files/Pipe Single Quote.txt"
+                 ,header= True,
+                   sep="|",
+                   inferSchema=True,
+                   quote="'")
+display(df2)
+
+for multiline data
+  
+  df3=spark.read.csv("/Volumes/my_files/my_filesschema/csv_files/my_files/Pipe Single Quote Escape Multiline CSV - Copy.txt",
+                   header= True,
+                   sep="|",
+                   inferSchema=True,
+                   quote="'",
+                   escape="#",
+                   multiLine=True)
+display(df3) 
+
+from pyspark.sql.functions import regexp_replace,col
+
+df_clean = df3.select(
+    regexp_replace(col("id"), r"[\'\\\\]", "").alias("id"),
+    regexp_replace(col("name"), r"[\'\\\\]", "").alias("name"),
+    regexp_replace(col("age"), r"[\'\\\\]", "").alias("age"),
+    regexp_replace(col("gender"), r"[\'\\\\]", "").alias("gender"),
+    regexp_replace(col("email"), r"[\'\\\\n]", "").alias("email")
+)
+
+display(df_clean) 
+
+  
+  
