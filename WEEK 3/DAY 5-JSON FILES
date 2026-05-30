@@ -1,0 +1,185 @@
+--Json file 1
+[
+  {
+    "id": 111,
+    "name": "Rohit Verma",
+    "age": 24,
+    "gender": "Male",
+    "email": "rohit.verma@gmail.com"
+  },
+  {
+    "id": 112,
+    "name": "Kavya Sharma",
+    "age": 25,
+    "gender": "Female",
+    "email": "kavya.sharma@gmail.com"
+  },
+  {
+    "id": 113,
+    "name": "Nikhil Reddy",
+    "age": 27,
+    "gender": "Male",
+    "email": "nikhil.reddy@gmail.com"
+  },
+  {
+    "id": 114,
+    "name": "Sanjana Patel",
+    "age": 26,
+    "gender": "Female",
+    "email": "sanjana.patel@gmail.com"
+  },
+  {
+    "id": 115,
+    "name": "Akhil Kumar",
+    "age": 23,
+    "gender": "Male",
+    "email": "akhil.kumar@gmail.com"
+  },
+  {
+    "id": 116,
+    "name": "Meghana Rao",
+    "age": 29,
+    "gender": "Female",
+    "email": "meghana.rao@gmail.com"
+  },
+  {
+    "id": 117,
+    "name": "Varun Singh",
+    "age": 28,
+    "gender": "Male",
+    "email": "varun.singh@gmail.com"
+  },
+  {
+    "id": 118,
+    "name": "Deepika Nair",
+    "age": 24,
+    "gender": "Female",
+    "email": "deepika.nair@gmail.com"
+  },
+  {
+    "id": 119,
+    "name": "Harsha Goud",
+    "age": 22,
+    "gender": "Male",
+    "email": "harsha.goud@gmail.com"
+  },
+  {
+    "id": 120,
+    "name": "Lavanya Reddy",
+    "age": 30,
+    "gender": "Female",
+    "email": "lavanya.reddy@gmail.com"
+  },
+  {
+    "id": 121,
+    "name": "Sai Krishna",
+    "age": 26,
+    "gender": "Male",
+    "email": "sai.krishna@gmail.com"
+  },
+  {
+    "id": 122,
+    "name": "Neha Joshi",
+    "age": 25,
+    "gender": "Female",
+    "email": "neha.joshi@gmail.com"
+  },
+  {
+    "id": 123,
+    "name": "Tarun Mehta",
+    "age": 31,
+    "gender": "Male",
+    "email": "tarun.mehta@gmail.com"
+  },
+  {
+    "id": 124,
+    "name": "Bhavana Das",
+    "age": 27,
+    "gender": "Female",
+    "email": "bhavana.das@gmail.com"
+  },
+  {
+    "id": 125,
+    "name": "Ajay Choudhary",
+    "age": 28,
+    "gender": "Male",
+    "email": "ajay.choudhary@gmail.com"
+  },
+  {
+    "id": 126,
+    "name": "Ritika Kapoor",
+    "age": 24,
+    "gender": "Female",
+    "email": "ritika.kapoor@gmail.com"
+  },
+  {
+    "id": 127,
+    "name": "Suresh Yadav",
+    "age": 32,
+    "gender": "Male",
+    "email": "suresh.yadav@gmail.com"
+  },
+  {
+    "id": 128,
+    "name": "Pavani Reddy",
+    "age": 23,
+    "gender": "Female",
+    "email": "pavani.reddy@gmail.com"
+  },
+  {
+    "id": 129,
+    "name": "Vamsi Teja",
+    "age": 29,
+    "gender": "Male",
+    "email": "vamsi.teja@gmail.com"
+  },
+  {
+    "id": 130,
+    "name": "Keerthi Menon",
+    "age": 26,
+    "gender": "Female",
+    "email": "keerthi.menon@gmail.com"
+  }
+]
+
+--json file 2
+
+{"id":111,"name":"Rohit Verma","age":24,"gender":"Male","email":"rohit.verma@gmail.com"}
+{"id":112,"name":"Kavya Sharma","age":25,"gender":"Female","email":"kavya.sharma@gmail.com"}
+{"id":113,"name":"Nikhil Reddy","age":27,"gender":"Male","email":"nikhil.reddy@gmail.com"}
+{"id":114,"name":"Sanjana Patel","age":26,"gender":"Female","email":"sanjana.patel@gmail.com"}
+{"id":115,"name":"Akhil Kumar","age":23,"gender":"Male","email":"akhil.kumar@gmail.com"}
+{"id":116,"name":"Meghana Rao","age":29,"gender":"Female","email":"meghana.rao@gmail.com"}
+{"id":117,"name":"Varun Singh","age":28,"gender":"Male","email":"varun.singh@gmail.com"}
+{"id":118,"name":"Deepika Nair","age":24,"gender":"Female","email":"deepika.nair@gmail.com"}
+{"id":119,"name":"Harsha Goud","age":22,"gender":"Male","email":"harsha.goud@gmail.com"}
+{"id":120,"name":"Lavanya Reddy","age":30,"gender":"Female","email":"lavanya.reddy@gmail.com"}
+{"id":121,"name":"Sai Krishna","age":26,"gender":"Male","email":"sai.krishna@gmail.com"}
+{"id":122,"name":"Neha Joshi","age":25,"gender":"Female","email":"neha.joshi@gmail.com"}
+{"id":123,"name":"Tarun Mehta","age":31,"gender":"Male","email":"tarun.mehta@gmail.com"}
+{"id":124,"name":"Bhavana Das","age":27,"gender":"Female","email":"bhavana.das@gmail.com"}
+{"id":125,"name":"Ajay Choudhary","age":28,"gender":"Male","email":"ajay.choudhary@gmail.com"}
+{"id":126,"name":"Ritika Kapoor","age":24,"gender":"Female","email":"ritika.kapoor@gmail.com"}
+{"id":127,"name":"Suresh Yadav","age":32,"gender":"Male","email":"suresh.yadav@gmail.com"}
+{"id":128,"name":"Pavani Reddy","age":23,"gender":"Female","email":"pavani.reddy@gmail.com"}
+{"id":129,"name":"Vamsi Teja","age":29,"gender":"Male","email":"vamsi.teja@gmail.com"}
+{"id":130,"name":"Keerthi Menon","age":26,"gender":"Female","email":"keerthi.menon@gmail.com"}
+
+df=spark.read.option("multiline","true").json("/Volumes/my_files/my_filesschema/json_files/my_files/multiLineJson.txt")
+display(df)
+
+df.write.format("json").save("/Volumes/my_files/my_filesschema/json_files/json_out_1")
+
+df.select("name","age").show()
+
+df.filter(df.age > 25).show()
+
+df.where(df.gender == "Male").show()
+
+df = spark.read \
+    .option("multiline","true") \
+    .json("/path/file.json")
+
+df = spark.read \
+    .option("inferSchema","true") \
+    .json("/path/file.json")
