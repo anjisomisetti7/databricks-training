@@ -1,0 +1,156 @@
+--CTE
+
+with employees as
+(    
+    select emp_name,age,gender,
+    salary + ISNULL(bonus,0) as total_salary 
+    from employee e
+    join infosys i on e.emp_id=i.emp_id
+)
+
+select
+   emp_name,total_salary
+   from employees
+   order by total_salary desc
+
+with seniors as
+(
+           select e.emp_id,emp_name,comp_role,
+           salary + isnull(bonus,0) as total_salary
+       
+           from employee e
+           join infosys i on e.emp_id=i.emp_id
+),
+ average_sal as
+ (         
+               select AVG(total_salary) as avg_sals
+               from seniors
+)
+
+select seniors.emp_name,seniors.comp_role,seniors.total_salary
+from seniors
+where seniors.total_salary > (select avg_sals from average_sal)
+
+with expert as
+(
+        select emp_name,comp_role,salary,expereince
+        from employee e
+        join infosys i on e.emp_id=i.emp_id
+)
+
+select emp_name,comp_role,salary,
+       isnull(expereince,0) as experience
+from expert
+
+with senior as
+(
+        select emp_name,comp_role,salary,expereince
+        from employee e
+        join infosys i on e.emp_id=i.emp_id
+        where expereince > 3
+)
+
+select *
+from senior
+      
+
+with richEmployee as 
+( 
+      select emp_name,age,salary,bonus
+      from employee e
+      inner join infosys i on e.emp_id=i.emp_id
+      where bonus is not null
+)
+ select *
+ from richEmployee
+ where salary > 50000
+
+ WITH salary_cte AS (
+    SELECT 
+        e.emp_name,
+        i.salary,
+        i.bonus,
+        (i.salary + ISNULL(i.bonus, 0)) AS total_salary
+    FROM employee e
+    JOIN infosys i ON e.emp_id = i.emp_id
+),
+filtered_cte AS (
+    SELECT *
+    FROM salary_cte
+    WHERE total_salary > 50000
+      AND bonus IS NOT NULL
+)
+SELECT *
+FROM filtered_cte;
+
+with salary_cte AS (
+    SELECT 
+        e.emp_name,
+        (i.salary + ISNULL(i.bonus, 0)) AS total_salary
+    FROM employee e
+    JOIN infosys i ON e.emp_id = i.emp_id
+)
+SELECT TOP 1 *
+FROM salary_cte
+ORDER BY total_salary DESC;
+
+with cte_name AS (
+    SELECT ...
+)
+SELECT * FROM cte_name;
+
+with salary_cte AS (
+    SELECT 
+        e.emp_name,
+        (i.salary + ISNULL(i.bonus, 0)) AS total_salary
+    FROM employee e
+    JOIN infosys i ON e.emp_id = i.emp_id
+),
+rank_cte AS (
+    SELECT *,
+           DENSE_RANK() OVER (ORDER BY total_salary DESC) AS rnk
+    FROM salary_cte
+)
+SELECT *
+FROM rank_cte
+WHERE rnk = 2;
+
+with salary_cte AS (
+    SELECT 
+        e.emp_name,
+        i.comp_role,
+        (i.salary + ISNULL(i.bonus, 0)) AS total_salary
+    FROM employee e
+    JOIN infosys i ON e.emp_id = i.emp_id
+),
+rank_cte AS (
+    SELECT *,
+           ROW_NUMBER() OVER (PARTITION BY comp_role ORDER BY total_salary DESC) AS rn
+    FROM salary_cte
+)
+SELECT *
+FROM rank_cte
+WHERE rn = 1;
+
+with join_cte AS (
+    SELECT 
+        e.emp_name,
+        i.date_of_joining
+    FROM employee e
+    JOIN infosys i ON e.emp_id = i.emp_id
+)
+SELECT *
+FROM join_cte
+WHERE date_of_joining > '2022-07-01';
+
+with bonus_cte AS (
+    SELECT 
+        e.emp_name,
+        i.salary,
+        i.bonus,
+        (ISNULL(i.bonus, 0) * 100.0 / i.salary) AS bonus_percent
+    FROM employee e
+    JOIN infosys i ON e.emp_id = i.emp_id
+)
+SELECT *
+FROM bonus_cte;
