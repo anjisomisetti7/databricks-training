@@ -1,0 +1,100 @@
+concept
+1. RDD (Resilient Distributed Dataset)
+
+Resilient Distributed Dataset (RDD)
+
+Meaning:
+
+RDD is the lowest-level data structure in Spark.
+It is a distributed collection of data split across multiple nodes.
+
+Key Features:
+Immutable (cannot change once created)
+Distributed across cluster
+Fault-tolerant (can recover lost data)
+No built-in schema
+Example:
+rdd = spark.sparkContext.parallelize([1,2,3,4])
+RDD Use Case:
+Low-level transformations
+Custom logic
+Legacy Spark code
+---------------------------------------------------
+2. DataFrame
+
+Apache Spark DataFrame API
+
+Meaning:
+
+A DataFrame is a table-like structure (rows + columns) with schema.
+
+Example:
+df = spark.read.csv("file.csv", header=True, inferSchema=True)
+df.show()
+Features:
+Structured data
+SQL-like operations
+Optimized (Catalyst optimizer)
+Faster than RDD
+Think of it like:
+RDD	DataFrame
+Raw data	Table data
+No schema	Schema exists
+Hard to use	Easy to use
+------------------------------------------------------------
+3. Partition
+Meaning:
+
+Partition means splitting data into chunks for parallel processing.
+
+Example:
+df.rdd.getNumPartitions()
+Why partitions matter:
+Each partition runs on different CPU/core
+More partitions → more parallelism
+Less partitions → slow processing
+Example:
+Data:
+1,2,3,4,5,6
+
+Partitions:
+P1 → 1,2
+P2 → 3,4
+P3 → 5,6
+-------------------------------------------------------------------
+4. Transformations
+Meaning:
+
+Operations that create a new RDD/DataFrame from existing one.
+
+✔ Lazy execution (not executed immediately)
+
+Examples:
+df.select("name")
+df.filter(df.age > 25)
+df.withColumn("salary", df.age * 1000)
+Key Points:
+Lazy evaluation
+Build execution plan (DAG)
+Not executed until action is called
+Types:
+Type	Example
+Narrow	filter, select
+Wide	groupBy, join
+--------------------------------------------------------------------
+5. Actions
+Meaning:
+
+Operations that trigger execution and return result.
+
+✔ Executes the DAG
+
+Examples:
+df.show()
+df.count()
+df.collect()
+df.write.parquet("/path")
+Key Points:
+Triggers computation
+Returns result to driver
+Ends lazy execution
