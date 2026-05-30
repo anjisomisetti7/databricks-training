@@ -1,0 +1,46 @@
+JDBC in PySpark
+What is JDBC?
+
+JDBC stands for:
+
+Java Database Connectivity
+
+It is used to connect PySpark with databases like:
+
+MySQL
+SQL Server
+Oracle
+PostgreSQL
+Why JDBC is Used
+
+Using JDBC, Spark can:
+
+Read database tables
+Load SQL query results
+Write data into databases
+
+jdbc_url = "jdbc:databricks://dbc-9d7ea6b8-7c69.cloud.databricks.com:443/default;transportMode=http;ssl=1;AuthMech=3;httpPath=/sql/1.0/warehouses/2655400fbe49a708;"
+
+access_token = "YOUR_ACCESS_TOKEN"
+
+query = "SELECT * FROM samples.bakehouse.sales_franchises LIMIT 100"
+
+df = spark.read \
+    .format("jdbc") \
+    .option("url", jdbc_url) \
+    .option("query", query) \
+    .option("user", "token") \
+    .option("password", access_token) \
+    .option("driver", "com.databricks.client.jdbc.Driver") \
+    .load()
+
+display(df)
+
+df = spark.read \
+    .format("jdbc") \
+    .option("url", jdbc_url) \
+    .option("dbtable", "samples.bakehouse.sales_franchises") \
+    .option("user", "token") \
+    .option("password", access_token) \
+    .option("driver", "com.databricks.client.jdbc.Driver") \
+    .load()
